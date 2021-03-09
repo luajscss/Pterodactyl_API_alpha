@@ -1,0 +1,16 @@
+C:\Users\Senpai\source\repos\hittsad\hittsad\bin\Debug\netcoreapp3.1\hittsad.exe
+C:\Users\Senpai\source\repos\hittsad\hittsad\bin\Debug\netcoreapp3.1\hittsad.deps.json
+C:\Users\Senpai\source\repos\hittsad\hittsad\bin\Debug\netcoreapp3.1\hittsad.runtimeconfig.json
+C:\Users\Senpai\source\repos\hittsad\hittsad\bin\Debug\netcoreapp3.1\hittsad.runtimeconfig.dev.json
+C:\Users\Senpai\source\repos\hittsad\hittsad\bin\Debug\netcoreapp3.1\hittsad.dll
+C:\Users\Senpai\source\repos\hittsad\hittsad\bin\Debug\netcoreapp3.1\hittsad.pdb
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.csprojAssemblyReference.cache
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.Properties.Resources.resources
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.csproj.GenerateResource.cache
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.AssemblyInfoInputs.cache
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.AssemblyInfo.cs
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.csproj.CoreCompileInputs.cache
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.dll
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.pdb
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.genruntimeconfig.cache
+C:\Users\Senpai\source\repos\hittsad\hittsad\obj\Debug\netcoreapp3.1\hittsad.LAPI.resources
