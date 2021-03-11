@@ -23,7 +23,7 @@ namespace hittsad
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            string path = @"c:\API.txt";
+            string path = @"c:\LAPI_API.txt";
 
             string APIVolume = textBox3.Text;
             // Запись ID сервера в txt для памяти.
@@ -35,7 +35,7 @@ namespace hittsad
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            string path = @"c:\ServerCode.txt";
+            string path = @"c:\LAPI_ServerCode.txt";
 
             string ClientIDValue = textBox2.Text;
             // Запись ID сервера в txt для памяти.
@@ -45,35 +45,65 @@ namespace hittsad
             }
         }
 
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            string path = @"c:\LAPI_URL.txt";
+            string URLVolume = textBox4.Text;
+
+            // Запись ID сервера в txt для памяти.
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(URLVolume);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string path = @"c:\LAPI_Command.txt";
+
+            string CommandValue = textBox1.Text;
+            // Запись ID сервера в txt для памяти.
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(CommandValue);
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             using (var httpClient = new HttpClient())
             {
-                string pathid = @"c:\ServerCode.txt";
-                string pathapi = @"c:\API.txt";
+                string pathid = @"c:\LAPI_ServerCode.txt";
+                string pathapi = @"c:\LAPI_API.txt";
+                string pathurl = @"c:\LAPI_URL.txt";
                 // Чтение ID сервера из txt.
                 using (StreamReader sr = File.OpenText(pathid))
                 {
                     using (StreamReader sr2 = File.OpenText(pathapi))
                     {
-                        string ClientIDValue = "";
-                        string APIVolume = "";
-                        ClientIDValue = sr.ReadLine();
-                        APIVolume = sr2.ReadLine();
-                        using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://panel.xeinhost.ru/api/client/servers/" + ClientIDValue + "/power"))
+                        using (StreamReader sr4 = File.OpenText(pathurl))
                         {
-                            request.Headers.TryAddWithoutValidation("Accept", "application/json");
-                            request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
-
-                            request.Content = new StringContent("{\"signal\": \"start\"}");
-                            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-                            var response = httpClient.SendAsync(request);
-                            var responseResult = response.Result;
-
-                            if (responseResult.IsSuccessStatusCode)
+                            string ClientIDValue = "";
+                            string APIVolume = "";
+                            string URLVolume = "";
+                            ClientIDValue = sr.ReadLine();
+                            APIVolume = sr2.ReadLine();
+                            URLVolume = sr4.ReadLine();
+                            using (var request = new HttpRequestMessage(new HttpMethod("POST"), "" + URLVolume + "api/client/servers/" + ClientIDValue + "/power"))
                             {
-                                var result = responseResult.Content.ReadAsStringAsync().Result;
+                                request.Headers.TryAddWithoutValidation("Accept", "application/json");
+                                request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
+
+                                request.Content = new StringContent("{\"signal\": \"start\"}");
+                                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                                var response = httpClient.SendAsync(request);
+                                var responseResult = response.Result;
+
+                                if (responseResult.IsSuccessStatusCode)
+                                {
+                                    var result = responseResult.Content.ReadAsStringAsync().Result;
+                                }
                             }
                         }
                     }
@@ -90,31 +120,37 @@ namespace hittsad
         {
             using (var httpClient = new HttpClient())
             {
-                string pathid = @"c:\ServerCode.txt";
-                string pathapi = @"c:\API.txt";
+                string pathid = @"c:\LAPI_ServerCode.txt";
+                string pathapi = @"c:\LAPI_API.txt";
+                string pathurl = @"c:\LAPI_URL.txt";
                 // Чтение ID сервера из txt.
                 using (StreamReader sr = File.OpenText(pathid))
                 {
                     using (StreamReader sr2 = File.OpenText(pathapi))
                     {
-                        string ClientIDValue = "";
-                        string APIVolume = "";
-                        ClientIDValue = sr.ReadLine();
-                        APIVolume = sr2.ReadLine();
-                        using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://panel.xeinhost.ru/api/client/servers/" + ClientIDValue + "/power"))
+                        using (StreamReader sr4 = File.OpenText(pathurl))
                         {
-                            request.Headers.TryAddWithoutValidation("Accept", "application/json");
-                            request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
-
-                            request.Content = new StringContent("{\"signal\": \"restart\"}");
-                            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-                            var response = httpClient.SendAsync(request);
-                            var responseResult = response.Result;
-
-                            if (responseResult.IsSuccessStatusCode)
+                            string ClientIDValue = "";
+                            string APIVolume = "";
+                            string URLVolume = "";
+                            ClientIDValue = sr.ReadLine();
+                            APIVolume = sr2.ReadLine();
+                            URLVolume = sr4.ReadLine();
+                            using (var request = new HttpRequestMessage(new HttpMethod("POST"), "" + URLVolume + "api/client/servers/" + ClientIDValue + "/power"))
                             {
-                                var result = responseResult.Content.ReadAsStringAsync().Result;
+                                request.Headers.TryAddWithoutValidation("Accept", "application/json");
+                                request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
+
+                                request.Content = new StringContent("{\"signal\": \"restart\"}");
+                                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                                var response = httpClient.SendAsync(request);
+                                var responseResult = response.Result;
+
+                                if (responseResult.IsSuccessStatusCode)
+                                {
+                                    var result = responseResult.Content.ReadAsStringAsync().Result;
+                                }
                             }
                         }
                     }
@@ -126,31 +162,37 @@ namespace hittsad
         {
             using (var httpClient = new HttpClient())
             {
-                string pathid = @"c:\ServerCode.txt";
-                string pathapi = @"c:\API.txt";
+                string pathid = @"c:\LAPI_ServerCode.txt";
+                string pathapi = @"c:\LAPI_API.txt";
+                string pathurl = @"c:\LAPI_URL.txt";
                 // Чтение ID сервера из txt.
                 using (StreamReader sr = File.OpenText(pathid))
                 {
                     using (StreamReader sr2 = File.OpenText(pathapi))
                     {
-                        string ClientIDValue = "";
-                        string APIVolume = "";
-                        ClientIDValue = sr.ReadLine();
-                        APIVolume = sr2.ReadLine();
-                        using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://panel.xeinhost.ru/api/client/servers/" + ClientIDValue + "/power"))
+                        using (StreamReader sr4 = File.OpenText(pathurl))
                         {
-                            request.Headers.TryAddWithoutValidation("Accept", "application/json");
-                            request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
-
-                            request.Content = new StringContent("{\"signal\": \"stop\"}");
-                            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-                            var response = httpClient.SendAsync(request);
-                            var responseResult = response.Result;
-
-                            if (responseResult.IsSuccessStatusCode)
+                            string ClientIDValue = "";
+                            string APIVolume = "";
+                            string URLVolume = "";
+                            ClientIDValue = sr.ReadLine();
+                            APIVolume = sr2.ReadLine();
+                            URLVolume = sr4.ReadLine();
+                            using (var request = new HttpRequestMessage(new HttpMethod("POST"), "" + URLVolume + "api/client/servers/" + ClientIDValue + "/power"))
                             {
-                                var result = responseResult.Content.ReadAsStringAsync().Result;
+                                request.Headers.TryAddWithoutValidation("Accept", "application/json");
+                                request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
+
+                                request.Content = new StringContent("{\"signal\": \"stop\"}");
+                                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                                var response = httpClient.SendAsync(request);
+                                var responseResult = response.Result;
+
+                                if (responseResult.IsSuccessStatusCode)
+                                {
+                                    var result = responseResult.Content.ReadAsStringAsync().Result;
+                                }
                             }
                         }
                     }
@@ -162,31 +204,37 @@ namespace hittsad
         {
             using (var httpClient = new HttpClient())
             {
-                string pathid = @"c:\ServerCode.txt";
-                string pathapi = @"c:\API.txt";
+                string pathid = @"c:\LAPI_ServerCode.txt";
+                string pathapi = @"c:\LAPI_API.txt";
+                string pathurl = @"c:\LAPI_URL.txt";
                 // Чтение ID сервера из txt.
                 using (StreamReader sr = File.OpenText(pathid))
                 {
                     using (StreamReader sr2 = File.OpenText(pathapi))
                     {
-                        string ClientIDValue = "";
-                        string APIVolume = "";
-                        ClientIDValue = sr.ReadLine();
-                        APIVolume = sr2.ReadLine();
-                        using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://panel.xeinhost.ru/api/client/servers/" + ClientIDValue + "/power"))
+                        using (StreamReader sr4 = File.OpenText(pathurl))
                         {
-                            request.Headers.TryAddWithoutValidation("Accept", "application/json");
-                            request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
-
-                            request.Content = new StringContent("{\"signal\": \"kill\"}");
-                            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-                            var response = httpClient.SendAsync(request);
-                            var responseResult = response.Result;
-
-                            if (responseResult.IsSuccessStatusCode)
+                            string ClientIDValue = "";
+                            string APIVolume = "";
+                            string URLVolume = "";
+                            ClientIDValue = sr.ReadLine();
+                            APIVolume = sr2.ReadLine();
+                            URLVolume = sr4.ReadLine();
+                            using (var request = new HttpRequestMessage(new HttpMethod("POST"), "" + URLVolume + "api/client/servers/" + ClientIDValue + "/power"))
                             {
-                                var result = responseResult.Content.ReadAsStringAsync().Result;
+                                request.Headers.TryAddWithoutValidation("Accept", "application/json");
+                                request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
+
+                                request.Content = new StringContent("{\"signal\": \"kill\"}");
+                                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                                var response = httpClient.SendAsync(request);
+                                var responseResult = response.Result;
+
+                                if (responseResult.IsSuccessStatusCode)
+                                {
+                                    var result = responseResult.Content.ReadAsStringAsync().Result;
+                                }
                             }
                         }
                     }
@@ -214,25 +262,14 @@ namespace hittsad
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            string path = @"c:\Command.txt";
-
-            string CommandValue = textBox1.Text;
-            // Запись ID сервера в txt для памяти.
-            using (StreamWriter sw = File.CreateText(path))
-            {
-                sw.WriteLine(CommandValue);
-            }
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             using (var httpClient = new HttpClient())
             {
-                string pathid = @"c:\ServerCode.txt";
-                string pathapi = @"c:\API.txt";
-                string pathcommand = @"c:\Command.txt";
+                string pathid = @"c:\LAPI_ServerCode.txt";
+                string pathapi = @"c:\LAPI_API.txt";
+                string pathcommand = @"c:\LAPI_Command.txt";
+                string pathurl = @"c:\LAPI_URL.txt";
                 // Чтение ID сервера из txt.
                 using (StreamReader sr = File.OpenText(pathid))
                 {
@@ -240,26 +277,31 @@ namespace hittsad
                     {
                         using (StreamReader sr3 = File.OpenText(pathcommand))
                         {
-                            string ClientIDValue = "";
-                            string APIVolume = "";
-                            string CommandValue = "";
-                            ClientIDValue = sr.ReadLine();
-                            APIVolume = sr2.ReadLine();
-                            CommandValue = sr3.ReadLine();
-                            using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://panel.xeinhost.ru/api/client/servers/" + ClientIDValue + "/command"))
+                            using (StreamReader sr4 = File.OpenText(pathurl))
                             {
-                                request.Headers.TryAddWithoutValidation("Accept", "application/json");
-                                request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
-
-                                request.Content = new StringContent("{\"command\": "+CommandValue+"}");
-                                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-                                var response = httpClient.SendAsync(request);
-                                var responseResult = response.Result;
-
-                                if (responseResult.IsSuccessStatusCode)
+                                string ClientIDValue = "";
+                                string APIVolume = "";
+                                string URLVolume = "";
+                                string CommandValue = "";
+                                ClientIDValue = sr.ReadLine();
+                                APIVolume = sr2.ReadLine();
+                                CommandValue = sr3.ReadLine();
+                                URLVolume = sr4.ReadLine();
+                                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "" + URLVolume + "api/client/servers/" + ClientIDValue + "/command"))
                                 {
-                                    var result = responseResult.Content.ReadAsStringAsync().Result;
+                                    request.Headers.TryAddWithoutValidation("Accept", "application/json");
+                                    request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + APIVolume);
+
+                                    request.Content = new StringContent("{\"command\": " + CommandValue + "}");
+                                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                                    var response = httpClient.SendAsync(request);
+                                    var responseResult = response.Result;
+
+                                    if (responseResult.IsSuccessStatusCode)
+                                    {
+                                        var result = responseResult.Content.ReadAsStringAsync().Result;
+                                    }
                                 }
                             }
                         }
@@ -269,6 +311,11 @@ namespace hittsad
         }
 
         private void VK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

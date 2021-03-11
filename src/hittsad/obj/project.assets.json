@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Senpai\\source\\repos\\hittsad\\hittsad\\hittsad.csproj",
+      "projectUniqueName": "C:\\Users\\Senpai\\Documents\\GitHub\\Pterodactyl-API--C----shit-version-\\src\\hittsad\\hittsad.csproj",
       "projectName": "hittsad",
-      "projectPath": "C:\\Users\\Senpai\\source\\repos\\hittsad\\hittsad\\hittsad.csproj",
+      "projectPath": "C:\\Users\\Senpai\\Documents\\GitHub\\Pterodactyl-API--C----shit-version-\\src\\hittsad\\hittsad.csproj",
       "packagesPath": "C:\\Users\\Senpai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Senpai\\source\\repos\\hittsad\\hittsad\\obj\\",
+      "outputPath": "C:\\Users\\Senpai\\Documents\\GitHub\\Pterodactyl-API--C----shit-version-\\src\\hittsad\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Senpai\\AppData\\Roaming\\NuGet\\NuGet.Config",
